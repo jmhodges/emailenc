@@ -25,10 +25,10 @@ type QPReader struct {
 	line []byte // to be consumed before more of br
 }
 
-// NewQuotedPrintableReader decodes quoted-printable data as it is
-// read. If the reader passed in is not a *bufio.Reader, it will wrap
-// it in one.
-func NewQuotedPrintableReader(r io.Reader) io.Reader {
+// NewReader returns a new Reader that decodes quoted-printable data
+// as it is read. If the reader passed in is not a *bufio.Reader, it
+// will wrap it in one.
+func NewReader(r io.Reader) io.Reader {
 	br, ok := r.(*bufio.Reader)
 	if !ok {
 		br = bufio.NewReader(r)
