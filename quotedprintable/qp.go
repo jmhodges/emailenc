@@ -89,6 +89,8 @@ func (q *QPReader) Read(p []byte) (n int, err error) {
 			if bytes.HasSuffix(q.line, softSuffix) {
 				rightStripped := wholeLine[len(q.line):]
 				q.line = q.line[:len(q.line)-1]
+				// TODO(jmhodges): line wrapping for soft suffixes
+				// q.line = append(q.line, '\n')
 				if !bytes.HasPrefix(rightStripped, lf) && !bytes.HasPrefix(rightStripped, crlf) {
 					q.rerr = fmt.Errorf("multipart: invalid bytes after =: %q", rightStripped)
 				}
